@@ -27,7 +27,7 @@ clean:
 	mmark  < $< > $@
 
 clean:
-	rm -f draft-*.txt draft-*.html draft-*.xml
+	rm -f draft-*.txt draft-*.html draft-*.xml metadata.min.js
 
 publish-7bits:
 	scp *.txt *.html *.txt www.7bits.nl:/var/www/html/tmp/
