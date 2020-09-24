@@ -1,7 +1,7 @@
 %%%
 title = "Parent-side authoritative DNS records for enhanced delegation"
 abbrev = "parent-side-auth-types"
-docName = "draft-peetterr-dnsop-parent-side-auth-types"
+docName = "draft-peetterr-dnsop-parent-side-auth-types-00"
 category = "std"
 
 ipr = "trust200902"
@@ -11,7 +11,7 @@ keyword = ["Internet-Draft"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-peetterr-dnsop-parent-side-auth-types"
+value = "draft-peetterr-dnsop-parent-side-auth-types-00"
 stream = "IETF"
 status = "standard"
 
