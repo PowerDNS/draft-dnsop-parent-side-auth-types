@@ -56,7 +56,7 @@ If this document had become an RFC five years ago, deploying new types (such as 
 In various conversations and posted drafts over the last five years in DPRIVE, DNSOP, and DELEG, a potential desire to publish other kinds of data parent-side has been identified.
 Some drafts simply proposed a new type, assuming that authoritative DNS servers and registry operations would eventually follow along; other drafts have tried to shoehorn new kinds of data into the DS record.
 If, when DS was defined, or at any time since then, a range of RRtype numbers would have been specified to have the same behaviour as DS, those drafts, and the experiments that need to go with figuring out the exact definition of a protocol, would have been much more feasible.
-This document requests that IANA allocate such a range.
+This document requests that IANA reserve such a range.
 
 # Document work
 
@@ -68,7 +68,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 # Summary
 
-A range of new types is allocated, but not assigned (FIXME: wording?).
+A range of new RR types is reserved, but not assigned.
 This range of types is defined to be handled by DNS software like the DS record is handled.
 Authoritative servers serve the types from the parent side of a delegation.
 Resolvers know to ask the parent side of a delegation.
@@ -122,12 +122,10 @@ Ideally, domain registries would allow anything in the experimental subrange.
 
 # IANA Considerations
 
-IANA is requested to reserve a range of numbers in the Domain Name System (DNS) Parameters Resource Record (RR) TYPEs, with this document as the Reference.
-The numbers shall get no meaningful names (but perhaps they would get some useful mnemonic, a weak proposal is `PA00` through `PAXX` for 'parent authoritive').
-IANA should expect to eventually receive requests to assign meaningful names to some of these numbers.
+IANA is requested to change reservations in the Domain Name System (DNS) Parameters Resource Record (RR) TYPEs registry, with this document as the Reference.
 
-IANA is also requested to mark a subset of that range as 'experimental'.
-The experimental numbers are expected to never be hardcoded in published, released software, and no further allocation or naming of the experimental numbers by an RFC or otherwise is expected.
+* Range 0xFA00-0xFDFF to Registration Procedure "Expert Review or Standards Action"
+* Range 0xFE00-0xFEFF to Registration Procedure "Private Use"
 
 # Acknowledgements
 
@@ -138,3 +136,5 @@ His contribution is rewarded by listing him as an author so he can take equal pa
 
 # Document history
 
+* 01
+  * Specific range of type numbers (subset of former "Reserved for future use") was added to IANA considerations.
