@@ -1,7 +1,7 @@
 %%%
 title = "Parent-side authoritative DNS records for enhanced delegation"
 abbrev = "parent-side-auth-types"
-docName = "draft-peetterr-dnsop-parent-side-auth-types-00+"
+docName = "draft-peetterr-dnsop-parent-side-auth-types-01"
 category = "std"
 
 ipr = "trust200902"
@@ -11,7 +11,7 @@ keyword = ["Internet-Draft"]
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-peetterr-dnsop-parent-side-auth-types-00+"
+value = "draft-peetterr-dnsop-parent-side-auth-types-01"
 stream = "IETF"
 status = "standard"
 
@@ -46,18 +46,17 @@ organization = "CZNIC"
 
 A DNS RRtype numeric range that behaves like DS is reserved.
 This means: being authoritative on the parent side of a delegation; being signed by the parent; being provided along with delegations by the parent.
-If this document had become an RFC five years ago, deploying new types (along the lines of NS2/NS2T, DSPKI or various other imagined things like DNS ('signed delegation NS')) would be easier to deploy and experiment with today.
+If this document had become an RFC five years ago, deploying new types (such as DELEG) would be easier to deploy and experiment with today.
 
 {mainmatter}
 
 # Introduction
 
 [@!RFC4035] defines the DS Resource Record, as a type with the special property that it lives at the parent side of a delegation, unlike any other record (if we can briefly ignore NSEC living on both sides of a delegation as an extra special case).
-In various conversations and posted drafts in DPRIVE and DNSOP, a need to publish other kinds of data parent-side has been identified.
+In various conversations and posted drafts over the last five years in DPRIVE, DNSOP, and DELEG, a potential desire to publish other kinds of data parent-side has been identified.
 Some drafts simply proposed a new type, assuming that authoritative DNS servers and registry operations would eventually follow along; other drafts have tried to shoehorn new kinds of data into the DS record.
 If, when DS was defined, or at any time since then, a range of RRtype numbers would have been specified to have the same behaviour as DS, those drafts, and the experiments that need to go with figuring out the exact definition of a protocol, would have been much more feasible.
 This document requests that IANA allocate such a range.
-
 
 # Document work
 
@@ -125,6 +124,7 @@ Ideally, domain registries would allow anything in the experimental subrange.
 
 IANA is requested to reserve a range of numbers in the Domain Name System (DNS) Parameters Resource Record (RR) TYPEs, with this document as the Reference.
 The numbers shall get no meaningful names (but perhaps they would get some useful mnemonic, a weak proposal is `PA00` through `PAXX` for 'parent authoritive').
+IANA should expect to eventually receive requests to assign meaningful names to some of these numbers.
 
 IANA is also requested to mark a subset of that range as 'experimental'.
 The experimental numbers are expected to never be hardcoded in published, released software, and no further allocation or naming of the experimental numbers by an RFC or otherwise is expected.
