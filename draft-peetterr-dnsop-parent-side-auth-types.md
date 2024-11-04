@@ -33,9 +33,9 @@ organization = "PowerDNS"
 initials = "P."
 surname = "Spacek"
 fullname = "Petr Spacek"
-organization = "CZNIC"
+organization = "ISC"
 [author.address]
- email = "petr.spacek@nic.cz"
+ email = "pspacek@isc.org"
 [author.address.postal]
  city = "Prague"
  country = "Czech Republic"
