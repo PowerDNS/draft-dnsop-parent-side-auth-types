@@ -38,7 +38,7 @@ organization = "ISC"
 [author.address]
  email = "pspacek@isc.org"
 [author.address.postal]
- city = "Prague"
+ city = "Brno"
  country = "Czech Republic"
 
 %%%
