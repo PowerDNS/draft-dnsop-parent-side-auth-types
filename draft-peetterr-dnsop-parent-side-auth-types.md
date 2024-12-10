@@ -45,10 +45,10 @@ organization = "ISC"
 
 .# Abstract
 
-DNS RR types with number in range 0xFA00-0xFDFF are now included in special treatment like DS RR type specified in [@!RFC4035].
-Authoritative servers, DNSSEC signers, and recursive resolvers need to extend condition for DS special cases to also include this range.
-DNSSEC validators also need to implement downgrade protection described in (#downgrade).
+DNS RR types with numbers in the range 0xFA00-0xFDFF are now included in special treatment like DS RR type specified in [@!RFC4035].
+Authoritative servers, DNSSEC signers, and recursive resolvers need to extend the conditions for DS special handling to also include this range.
 This means: being authoritative on the parent side of a delegation; being signed by the parent; being provided along with delegations by the parent.
+DNSSEC validators also need to implement downgrade protection described in (#downgrade).
 
 {mainmatter}
 
@@ -66,7 +66,7 @@ This document lives [on GitHub](https://github.com/PowerDNS/draft-dnsop-parent-s
 
 # Conventions and Definitions {#term}
 
-Term "Parent-Side Types" refers to set of RR types which contains exactly:
+The term "Parent-Side Types" refers to set of RR types which contains exactly:
 
 * Value 43 as defined for DS type by [@RFC4034, section 5],
 * The whole range reserved by this document in (#iana).
@@ -77,7 +77,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 A RR type range reservation in [#iana] is now open for allocation of future Parent-Side Types, but none such types are allocated by this document.
 
-Special processing for DS record type related to its inclusion in DNS messages, zone files, DNSSEC signing, etc. are extended to all Parent-Side Types. The only exception are rules which pertain to content of DS resource records, which are not applicable to other Parent-Side Types.
+Special processing for DS record type related to its inclusion in DNS messages, zone files, DNSSEC signing, etc. is extended to all Parent-Side Types.
+The only exception are rules which pertain to content of DS resource records, which are not applicable to other Parent-Side Types.
 
 In short, authoritative servers serve the types from the parent side of a delegation and resolvers know to ask the parent side of a delegation.
 
@@ -87,10 +88,8 @@ Having these type numbers reserved with defined processing rules allows for futu
 
 'Implementation' is understood to mean both 'code changes' and 'operational changes' here.
 
-This specification extends special handling previously defined exclusively to
-DS RR type to apply to all Parent-Side Types. In short, implementations
-need to modify their hardcoded condition (if RRTYPE equals DS) to (if RRTYPE
-is Parent-Side Type) as defined in (#term).
+This specification extends special handling previously defined exclusively to DS RR type to apply to all Parent-Side Types.
+In short, implementations need to modify their hardcoded condition (if RRTYPE equals DS) to (if RRTYPE is Parent-Side Type) as defined in (#term).
 
 ## Authoritative servers, Signing software, and Recursive resolvers
 
@@ -135,7 +134,7 @@ How to deal with these places which were not updated by the RFC4033-4035? Close 
 * [@RFC6840, section 4.1]: Reference to DS RR type is replaced by all Parent-Side Types.
 
 * [@RFC6840, section 4.4]:
-  * While proving existance of any Parent-Side Type needs MUST follow rules for NSEC bitmap checks from this section to detect spoofed proofs from the child zone.
+  * While proving existence of any Parent-Side Type needs MUST follow rules for NSEC bitmap checks from this section to detect spoofed proofs from the child zone.
   * Only DS RR type is used for determining presence of a secure delegation.
 
 This specification defines changes to query processing in resolvers.
@@ -144,9 +143,10 @@ FIXME DNSKEY flag for downgrade resistance
 
 ### Preventing downgrade attacks
 
-A flag in the DNSKEY record signing the delegation is used as a backwards compatible, secure signal to indicate to a resolver that DELEG records are present or that there is an authenticated denial of a DELEG record. Legacy resolvers will ignore this flag and use the DNSKEY as is.
+A flag in the DNSKEY record signing the delegation is used as a backwards compatible, secure signal to indicate to a resolver that Parent Side Types (other than DS) MAY be present or that there is an authenticated denial of parent side types.
+Legacy resolvers will ignore this flag and use the DNSKEY as is.
 
-Without this secure signal an on-path adversary can remove DELEG records and its RRsig from a response and effectively downgrade this to a legacy DNSSEC signed response.
+Without this secure signal an on-path adversary can remove Parent Side records and their RRSIGs from a response and effectively downgrade this to a legacy DNSSEC signed response.
 
 ## Zone validator changes {#downgrade}
 
@@ -159,7 +159,7 @@ RR types from the new parent-side range in (#iana) must conform to the same sign
 
 ## Stub resolver changes
 
-This specification defines no changes to query processing in resolvers.
+This specification defines no changes to query processing in stub resolvers.
 
 FIXME
 
@@ -172,12 +172,11 @@ Ideally, domain registries would allow anything in the experimental subrange.
 
 # Security Considerations
 
-
+TODO: definitely need words about the downgrade protection here.
 
 # Implementation Status
 
 [RFC Editor: please remove this section before publication]
-
 
 # IANA Considerations {#iana}
 
@@ -199,3 +198,4 @@ His contribution is rewarded by listing him as an author so he can take equal pa
 
 * 01
   * Specific range of type numbers (subset of former "Reserved for future use") was added to IANA considerations.
+  * Some words on downgrade protection were added.
